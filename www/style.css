@@ -1,0 +1,54 @@
+.navbar{
+     background-color: #1d1d1d;
+}
+.navbar-nav li a:hover, .navbar-nav > .active > a {
+     color: #ebebeb !important;
+     background-color:#3e3e3e !important;
+}
+.navbar-header span, .navbar-header > .navbar-brand {
+     color: #ebebeb !important;
+}
+body {     
+     background-color: #252525;
+     max-width: 1000px;
+     padding: 50px 80px 50px 80px;
+     display: block;
+     margin-left: auto;
+     margin-right: auto;
+     font-family: Arial, Helvetica, sans-serif;
+}
+.shiny-text-output{
+     color: #ff5c5c;
+     font-size: 1.25em;
+}
+ul{
+     color: #ebebeb;
+     font-size: 1.25em;
+}
+p{
+     color: #ebebeb;
+     font-size: 1.25em;
+}
+h1 {
+     color: #ebebeb;
+}
+h2 {
+     color: #ebebeb;
+}
+h3 {
+     color: #ebebeb;
+}
+h4 {
+     color: #ebebeb;
+}
+a {
+     color: rgb(155, 155, 155);
+}
+img {width: 70%;
+     max-width: 1000px;
+     height: auto;
+     padding: 10px 0px;
+     display: block;
+     margin-left: auto;
+     margin-right: auto;
+}

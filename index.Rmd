@@ -1,0 +1,68 @@
+---
+title: "Tinder Usage Among College Students"
+output: html_document
+---
+
+```{r setup, include=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source("scripts/Summary Info.R")
+source("scripts/bar_chart.R")
+source("scripts/piechart.R")
+source("scripts/scatter_plot.R")
+source("scripts/summary_table.R")
+library(knitr)
+df <- read.csv("data/Tinder Millennial Match Rate Dataset.csv",
+               stringsAsFactors = FALSE)
+```
+
+### Introduction:
+Our domain of interest is relationships and dating. We are specifically interested in how the increase in popularity of dating apps and online social networking has impacted how people meet and form relationships. This is extremely relevant now because of COVID-19 and the resulting overwhelming shift to online. We hope to answer questions related to how the move to online and app-based dating is changing how people form and maintain relationships. To find answers, we chose analyze the [Tinder Millennial Match Rate Dataset](https://data.world/ahalps/how-many-millennials-find-someone-on-tinder), which is a survey of college students to determine how many respondents have ever met up someone that they found on Tinder. It separates data by university, gender, and whether they are a web or mobile respondent. We downloaded the data from [data.world](https://data.world). The data was collected by the millennial survey company and surveyed by [Adam Halper](https://data.world/ahalps), the company’s CEO. There are 453 rows and 6 columns in this dataset.
+
+We identified three questions that we hope to answer:
+
+* Are males more likely to find a date on Tinder than females?
+* Which university uses Tinder the most?
+* What percentage of people actually meet up with someone offline?
+
+### Summary:
+
+```{r summary, echo=FALSE, warning=FALSE}
+info <- get_summary_info(df)
+```
+
+A total of `r info$people_answered` college students answered the Tinder survey. Of those respondents, a total of `r info$people_use_tinder` reported that they were currently using Tinder. The number of college students not using Tinder at all was `r info$people_not_use`. The rate of people who were successful in using Tinder to meet up with people offline was `r info$success_rate`. Finally, the college where the highest number of students reported that they used Tinder was `r info$max_users`.
+
+### Breakdown of Respondents:
+
+```{r table, echo=FALSE, warning=FALSE}
+summary_table <- summary_table(df)
+kable(summary_table,
+      row.names = FALSE,
+      col.names = c("Type of Respondent", "Total"))
+```
+
+This table shows the number respondents to the survey, divided by gender. We decided to group by gender as it allowed us to see if there was a major discrepancy between the number of males who answered the survey compared to the number of females who answered it. From the table, we see that the number of female respondents was 1638, while the number of  male respondents was 2218. From this, we see that quite a few more males answered the survey than females, which could lead to somewhat skewed results.
+
+### Tinder Success Breakdown:
+
+```{r bar, echo=FALSE, warning=FALSE}
+bar_chart(df)
+```
+
+This chart was intended to show the relationship between gender and the likelihood that a Tinder user would find a date. We decided that a bar chart would be the most effective type of plot to answer this question. Bar charts are one of the most effective ways to visualize differences between different groups such as with gender in this case. The chart shows that females have a slightly higher likelihood of finding a date on Tinder with a 28.97% chance to get a date compared to 28.71% for the men. Based on how close the numbers are, it’s safe to say that men and women have an equal chance of finding dates on Tinder with no gender having a distinct advantage.
+
+### Differences in Tinder Usage between Schools:
+
+```{r scatter, echo=FALSE, warning=FALSE}
+plot_q2(df)
+```
+
+We used a scatter plot to show how many Tinder users there are at each college surveyed. We chose a scatter plot because, while a bar chart would show which college had the highest number of Tinder users fairly well, it doesn’t take into account the fact that not all colleges were surveyed evenly. Some schools had as little as one student who responded to the survey, while others had many times more. Using a scatterplot allows us to also include the percentage of college students who report using Tinder, so we get a more detailed picture of each college. We can ignore unrealistic data like that of the University of Oregon and Yale University, where the data says that 100% of students use Tinder, but only because just one or two people actually responded to the survey. Several schools such as Vanderbilt University, the University of Wisconsin-Madison, and Northwestern University all had a high number of survey respondents (over 75) and results that show a very high proportion of Tinder users (exceeding 75%). While we still can’t be entirely sure, it’s safe to assume that these schools have some of the highest Tinder usage of those surveyed.
+
+### Analysis of Tinder Success:
+
+```{r pie, echo=FALSE, warning=FALSE}
+piechart_function(df)
+```
+
+With this plot, we aimed to answer the question “How successful is Tinder?” We answered this question based on how many people met up on Tinder compared with the number that did not. We excluded the people who answered “I don't use Tinder”, as this data was not relevant to answering a question about Tinder success.  A pie chart was used to present this information. A bar chart could have also been used. We concluded 71.2% of people said “No” to having met up with someone through Tinder. 28.8% of people said “Yes” to having met up with someone off Tinder. A pie chart was the most effective chart to depict our findings as only two variables were being considered (those who said “Yes” and those who said “No”), and a pie chart shows the difference between these categories very clearly.
